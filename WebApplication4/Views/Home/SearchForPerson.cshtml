@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SearchForPerson";
+}
+
+<div class="searchForPerson">
+    <input type="text" id="personInput" onkeyup="searchForCourses('personInput', 'peopleSearchTable')" placeholder="Search for person...">
+    <div id="people_search_table"></div>
+
+    <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "../Data/people.csv",
+                    dataType: "text",
+                }).done(successFunctionPeople);
+            });
+    </script>
+</div>

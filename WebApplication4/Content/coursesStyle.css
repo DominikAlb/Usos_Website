@@ -1,0 +1,37 @@
+﻿.coursesTable, .coursesSearchTable, .peopleSearchTable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.coursesTh {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.coursesTd {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.coursesTr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#courseInput, #nameInput, #coursesInput, #personInput {
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 50%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    float: left;
+}
+
+#coursesInput, #personInput{
+    width: 100%;
+}

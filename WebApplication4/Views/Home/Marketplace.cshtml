@@ -1,0 +1,36 @@
+﻿@model List<WebApplication4.Data.Subject>
+@{
+    ViewBag.Title = "Marketplace";
+}
+
+<div class="Market" >
+    @if (Session["Login"] != null)
+    {
+        <text>
+            Welcome @Session["Login"].ToString()
+        </text>
+
+        <table class="coursesSearchTable" id='coursesSearchTable'>
+            <tr class='coursesTr'>
+                <th onclick='sortTable(0,coursesSearchTable)' class='coursesTh'>Przedmiot</th>
+                <th onclick='sortTable(1,coursesSearchTable)' class='coursesTh'>Prowadzący</th>
+                <th onclick='sortTable(3,coursesSearchTable)' class='coursesTh'>ECTS</th>
+                <th onclick='sortTable(4,coursesSearchTable)' class='coursesTh'>Wydział</th>
+                <th class='coursesTh'>Kup</th>
+                <th class='coursesTh'>Anuluj</th>
+            </tr>
+            @for(int i = 0; i < Model.Count; i++)
+            {
+            <tr class='coursesTr'>
+                <td class='coursesTd'>@Model[i].NameOfSub</td>
+                <td class='coursesTd'>@Model[i].Professor</td>
+                <td class='coursesTd'>@Model[i].ECTS</td>
+                <td class='coursesTd'>@Model[i].Department</td>
+                <td class='coursesTd'>@Html.ActionLink("Kup", "Edit", new { id = Model[i].ID })</td>
+                <td class='coursesTd'>@Html.ActionLink("Anuluj", "Marketplace", new { id = Model[i].ID})</td>
+            </tr>
+            }
+        </table>
+    }
+</div>
+

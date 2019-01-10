@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title — moja aplikacja platformy ASP.NET</title>
+    @*Referencing angular js with google api*@
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="https://johnny.github.io/jquery-sortable/js/jquery-sortable.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/MainScripts.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styless.css">
+    <link rel="stylesheet" href="../css/coursesStyle.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <nav>
+        <div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Kalendarz", "Calendar", "Home")</li>
+                    <li>@Html.ActionLink("Kursy", "Courses", "Home")</li>
+                    <li>@Html.ActionLink("Logowanie", "Login", "Home")</li>
+                    <li>@Html.ActionLink("Market", "Marketplace", "Home")</li>
+                    <li>@Html.ActionLink("Szukaj kursu", "SearchForCourse", "Home")</li>
+                    <li>@Html.ActionLink("Szukaj przedmiotu", "SearchForPerson", "Home")</li>
+                </ul>
+            </div>
+            <div style="float:right">
+                @if (ViewBag.Message != null)
+                {
+                    <text>Permission: @ViewBag.Message</text>
+                }
+
+            </div>
+        </div>
+    </nav>
+    <div class="message">
+        @if (Session["LogSub"] != null)
+        {
+            <Text>@Session["LogSub"]</Text>
+        }
+    </div>
+    <div class="container body-content" >
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year — moja aplikacja platformy ASP.NET</p>
+        </footer>
+    </div>
+
+    
+</body>
+</html>

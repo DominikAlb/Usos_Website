@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SearchForCourses";
+}
+
+<div class="searchForCourse">
+    <input type="text" id="coursesInput" onkeyup="searchForCourses('coursesInput', 'coursesSearchTable')" placeholder="Search for courses...">
+    <div id="courses_search_table"></div>
+
+    <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "../Data/courses.csv",
+                    dataType: "text",
+                }).done(successFunctionCourses);
+            });
+    </script>
+</div>

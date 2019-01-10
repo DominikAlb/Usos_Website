@@ -1,0 +1,66 @@
+﻿@model WebApplication4.Data.Exam
+@{
+    ViewBag.Title = "Calendar";
+}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="subjectList">
+    <div>
+        <h1> Twoja lista przedmiotów: </h1>
+
+
+        @using (Html.BeginForm("Calendar", "Home", FormMethod.Post, new { }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.LabelFor(m => m.NameOfSub)
+            @Html.TextBoxFor(m => m.NameOfSub)
+            @Html.ValidationMessageFor(m => m.NameOfSub)
+
+            @Html.LabelFor(m => m.Professor)
+            @Html.TextBoxFor(m => m.Professor)
+            @Html.ValidationMessageFor(m => m.Professor)
+
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date)
+            @Html.ValidationMessageFor(m => m.Date)
+
+            <input type='Submit' value='Dodaj przedmiot' />
+
+        }
+        <ul class="connectedSortable" id="example"></ul>
+        <div class="month">
+            <ul>
+                <li class="prev">&#10094;</li>
+                <li class="next">&#10095;</li>
+                <li>Grudzień<br><span style="font-size:18px">2018</span></li>
+            </ul>
+        </div>
+
+        <ul class="weekdays">
+            <li>Mo</li>
+            <li>Tu</li>
+            <li>We</li>
+            <li>Th</li>
+            <li>Fr</li>
+            <li>Sa</li>
+            <li>Su</li>
+        </ul>
+
+        <div id="exam_table">
+            @(new HtmlString((string)Session["Exams"]))
+        </div>
+
+        <script>
+            $(function () {
+                $("#daysList1, #daysList2, #daysList3, #daysList4, #daysList5, #daysList6, #daysList7, #daysList8, #daysList9, #daysList10, " +
+                    "#daysList11, #daysList12, #daysList13, #daysList14, #daysList15, #daysList16, #daysList17, #daysList18, #daysList19, #daysList20, " +
+                    "#daysList21, #daysList22, #daysList23, #daysList24, #daysList25, #daysList26, #daysList27, #daysList28, #daysList29, #daysList30, #daysList31").sortable({
+                        connectWith: ".connectedSortable"
+                    }).disableSelection();
+            });
+        </script>
+    </div>
+
+</div>
