@@ -172,7 +172,7 @@
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
           </AssociationSet>
           <EntitySet Name="Subject" EntityType="NorthwindModel.Subject" />
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="ID" />
@@ -183,7 +183,7 @@
           <Property Name="ECTS" Type="Int32" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

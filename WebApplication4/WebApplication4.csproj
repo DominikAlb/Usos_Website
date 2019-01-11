@@ -156,6 +156,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleDataBase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Singleton\Singleton.cs" />
     <Compile Include="Data\Strategy\CheckDepartment.cs" />
     <Compile Include="Data\Subject.cs">
       <DependentUpon>SimpleDataBase.tt</DependentUpon>
@@ -197,9 +198,6 @@
     <Compile Include="Data\FabricPermissions\FabricSupervisesPermissions.cs" />
     <Compile Include="Data\Factory.cs" />
     <Compile Include="Data\IClient.cs" />
-    <Compile Include="Data\Memento\Caretaker.cs" />
-    <Compile Include="Data\Memento\Memento.cs" />
-    <Compile Include="Data\Memento\Originator.cs" />
     <Compile Include="Data\Observer\ConcreteObserver.cs" />
     <Compile Include="Data\Observer\ConcreteSubject.cs" />
     <Compile Include="Data\Observer\Observer.cs" />
@@ -246,6 +244,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="instnwnd.sql" />
     <Content Include="Models\skocz.gif" />
     <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\bootstrap.js" />

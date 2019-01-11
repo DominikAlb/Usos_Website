@@ -26,6 +26,7 @@ namespace WebApplication4.Controllers.Command
                     cmd.Parameters.Add("@param2", SqlDbType.Int).Value = id_user;
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
+                    
                 }
             }
         }

@@ -25,9 +25,8 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(User objUser)
         {
-            Proxy.Subject proxy = new Proxy.Proxy();
-            var obj = proxy.Request(objUser);
-
+            Data.Singleton.Singleton singleton = Data.Singleton.Singleton.Instance;
+            User obj = singleton.Subject(objUser);
             if (obj != null)
             {
                 IClient permission = new Factory().Run(obj.Flag);
@@ -154,5 +153,21 @@ namespace WebApplication4.Controllers
             }
             return View(sub);
         }
+
+        public ActionResult Memento(int id = 0)
+        {
+            Data.Subject sub;
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                sub = db.Subject.Find(id);
+                if (sub == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            
+            return View(sub);
+        }
+        
     }
 }

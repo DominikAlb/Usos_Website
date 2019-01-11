@@ -12,7 +12,7 @@
         <AssociationConnector Association="NorthwindModel.FK__SubjectGr__ID_EX__17C286CF" ManuallyRouted="false" />
         <AssociationConnector Association="NorthwindModel.FK__SubjectGr__ID_US__16CE6296" ManuallyRouted="false" />
         <EntityTypeShape EntityType="NorthwindModel.Subject" Width="1.5" PointX="5.375" PointY="0.75" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
