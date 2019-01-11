@@ -25,6 +25,8 @@ namespace WebApplication4.Data
         public string Hash { get; set; }
         public string Data { get; set; }
         public Nullable<int> Flag { get; set; }
+        public Nullable<int> ECTS { get; set; }
+        public string Department { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubjectGroup> SubjectGroup { get; set; }

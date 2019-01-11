@@ -156,6 +156,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleDataBase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Strategy\CheckDepartment.cs" />
     <Compile Include="Data\Subject.cs">
       <DependentUpon>SimpleDataBase.tt</DependentUpon>
     </Compile>

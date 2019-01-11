@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Web.Mvc;
+using Usososo.Controllers.Strategy;
 using WebApplication4.App_Start;
 using WebApplication4.Controllers.Adapterr;
 using WebApplication4.Controllers.Builder;
+using WebApplication4.Controllers.Command;
 using WebApplication4.Controllers.Observer;
 using WebApplication4.Controllers.Proxy;
 using WebApplication4.Data;
+using WebApplication4.Data.Strategy;
 
 namespace WebApplication4.Controllers
 {
@@ -32,6 +35,7 @@ namespace WebApplication4.Controllers
                 ITarget target = new Adapterr.Adapterr();
                 
                 Session["ID"] = obj.ID.ToString();
+                Session["ECTS"] = obj.ECTS;
                 Session["Login"] = obj.Login.ToString();
                 Session["LogSub"] = SendMessage.Main(obj.ID);
                 Session["Exams"] = target.SafeData(DateTime.Now.Month + "-" + DateTime.Now.Year, int.Parse((string)Session["ID"]));
@@ -89,7 +93,6 @@ namespace WebApplication4.Controllers
         }
         public ActionResult Login()
         {
-
             return View();
         }
         public ActionResult Marketplace()
@@ -98,11 +101,17 @@ namespace WebApplication4.Controllers
             Builder.Builder builder = new ConcreteBuilder();
             var label = director.Construct(builder);
 
-            return View(label);
+            Order order = new Order(CheckDepartment.BuyForECTSFunction(int.Parse((string)Session["ID"])));
+            var yourSubjectsYouCanBuy = order.ContextInterface(label);
+            return View(yourSubjectsYouCanBuy);
+        }
+        [HttpPost]
+        public ActionResult Marketplace(Data.Subject sub)
+        {
+            return View();
         }
         public ActionResult SearchForCourse()
         {
-
             return View();
         }
         public ActionResult SearchForPerson()
@@ -120,9 +129,13 @@ namespace WebApplication4.Controllers
                 {
                     return HttpNotFound();
                 }
-
             }
-                
+            Receiver receiver = new Receiver();
+            Command.Command command = new ConcreteCommand(receiver);
+            Invoker invoker = new Invoker();
+            invoker.SetCommand(command);
+            invoker.ExecuteCommand(int.Parse((string)Session["ID"]), sub);
+            Session["ECTS"] = invoker.ExecuteCommand(int.Parse((string)Session["ID"]));
             return View(sub);
         }
         
@@ -138,7 +151,6 @@ namespace WebApplication4.Controllers
                     db.SaveChanges();
                     return View();
                 }
-
             }
             return View(sub);
         }

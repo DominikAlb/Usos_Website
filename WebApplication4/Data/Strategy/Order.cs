@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication4.Data;
 
 namespace Usososo.Controllers.Strategy
 {
@@ -15,9 +16,9 @@ namespace Usososo.Controllers.Strategy
             this._strategy = strategy;
         }
 
-        public void ContextInterface()
+        public List<Subject> ContextInterface(List<Subject> main)
         {
-            _strategy.AlgorithmInterface();
+            return _strategy.AlgorithmInterface(main);
         }
     }
 }

@@ -48,8 +48,10 @@
           <Property Name="Hash" Type="nvarchar" MaxLength="64" />
           <Property Name="Data" Type="nvarchar" MaxLength="20" />
           <Property Name="Flag" Type="int" />
+          <Property Name="ECTS" Type="int" />
+          <Property Name="Department" Type="nvarchar" MaxLength="32" />
         </EntityType>
-        <Association Name="FK__SubjectGr__ID_EX__2CBDA3B5">
+        <Association Name="FK__SubjectGr__ID_EX__44952D46">
           <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
           <End Role="SubjectGroup" Type="Self.SubjectGroup" Multiplicity="*" />
           <ReferentialConstraint>
@@ -61,7 +63,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubjectGr__ID_US__2BC97F7C">
+        <Association Name="FK__SubjectGr__ID_US__43A1090D">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="SubjectGroup" Type="Self.SubjectGroup" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,11 +81,11 @@
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectGroup" EntityType="Self.SubjectGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__SubjectGr__ID_EX__2CBDA3B5" Association="Self.FK__SubjectGr__ID_EX__2CBDA3B5">
+          <AssociationSet Name="FK__SubjectGr__ID_EX__44952D46" Association="Self.FK__SubjectGr__ID_EX__44952D46">
             <End Role="Exam" EntitySet="Exam" />
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubjectGr__ID_US__2BC97F7C" Association="Self.FK__SubjectGr__ID_US__2BC97F7C">
+          <AssociationSet Name="FK__SubjectGr__ID_US__43A1090D" Association="Self.FK__SubjectGr__ID_US__43A1090D">
             <End Role="User" EntitySet="User" />
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
           </AssociationSet>
@@ -129,6 +131,8 @@
           <Property Name="Data" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Flag" Type="Int32" />
           <NavigationProperty Name="SubjectGroup" Relationship="Self.FK__SubjectGr__ID_US__16CE6296" FromRole="User" ToRole="SubjectGroup" />
+          <Property Name="ECTS" Type="Int32" />
+          <Property Name="Department" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__SubjectGr__ID_EX__17C286CF">
           <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
@@ -215,6 +219,8 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="NorthwindModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ECTS" ColumnName="ECTS" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Hash" ColumnName="Hash" />

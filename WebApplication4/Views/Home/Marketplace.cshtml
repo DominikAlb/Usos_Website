@@ -7,9 +7,9 @@
     @if (Session["Login"] != null)
     {
         <text>
-            Welcome @Session["Login"].ToString()
+            Welcome @Session["Login"].ToString() Liczba wolnych ECTS wynosi: @Session["ECTS"].ToString()
         </text>
-
+        
         <table class="coursesSearchTable" id='coursesSearchTable'>
             <tr class='coursesTr'>
                 <th onclick='sortTable(0,coursesSearchTable)' class='coursesTh'>Przedmiot</th>
@@ -27,7 +27,7 @@
                 <td class='coursesTd'>@Model[i].ECTS</td>
                 <td class='coursesTd'>@Model[i].Department</td>
                 <td class='coursesTd'>@Html.ActionLink("Kup", "Edit", new { id = Model[i].ID })</td>
-                <td class='coursesTd'>@Html.ActionLink("Anuluj", "Marketplace", new { id = Model[i].ID})</td>
+                <td class='coursesTd'>@Html.ActionLink("Anuluj", "Marketplace", new { })</td>
             </tr>
             }
         </table>
