@@ -100,9 +100,14 @@ namespace WebApplication4.Controllers
             Builder.Builder builder = new ConcreteBuilder();
             var label = director.Construct(builder);
 
-            Order order = new Order(CheckDepartment.BuyForECTSFunction(int.Parse((string)Session["ID"])));
-            var yourSubjectsYouCanBuy = order.ContextInterface(label);
-            return View(yourSubjectsYouCanBuy);
+            if (Session["ID"] != null)
+            {
+                Order order = new Order(CheckDepartment.BuyForECTSFunction(int.Parse((string)Session["ID"])));
+                var yourSubjectsYouCanBuy = order.ContextInterface(label);
+                return View(yourSubjectsYouCanBuy);
+            }
+            return View();
+            
         }
         [HttpPost]
         public ActionResult Marketplace(Data.Subject sub)
