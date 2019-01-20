@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BB915B3E-ADCA-4EBB-9908-7589B5BE3388}</ProjectGuid>
+    <ProjectGuid>{07A78F07-02B7-4AFE-844E-E292A39F37CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApplication4.Tests.Tests</RootNamespace>
-    <AssemblyName>WebApplication4.Tests.Tests</AssemblyName>
+    <RootNamespace>WebApplication4</RootNamespace>
+    <AssemblyName>WebApplication4.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -93,14 +96,11 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApplication4\WebApplication4.csproj">
-      <Project>{720C0A3C-4217-4C01-8F59-C686E40CF6CD}</Project>
+      <Project>{720c0a3c-4217-4c01-8f59-c686e40cf6cd}</Project>
       <Name>WebApplication4</Name>
     </ProjectReference>
   </ItemGroup>

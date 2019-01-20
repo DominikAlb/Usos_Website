@@ -53,7 +53,11 @@ namespace WebApplication4.Controllers
             if (Session["Login"] != null)
             {
                 ITarget target = new Adapterr.Adapterr();
-                target.AddExam(objUser, int.Parse((string)Session["ID"]));
+                Receiver receiver = new Receiver();
+                Command.Command command = new ConcreteCommand(receiver);
+                Invoker invoker = new Invoker();
+                invoker.SetCommand(command);
+                invoker.AddExam(objUser, int.Parse((string)Session["ID"]));
                 try
                 {
                     Session["Exams"] = target.SafeData(DateTime.Now.Month + "-" + DateTime.Now.Year, int.Parse((string)Session["ID"]));
@@ -99,7 +103,6 @@ namespace WebApplication4.Controllers
             Director director = new Director();
             Builder.Builder builder = new ConcreteBuilder();
             var label = director.Construct(builder);
-
             if (Session["ID"] != null)
             {
                 Order order = new Order(CheckDepartment.BuyForECTSFunction(int.Parse((string)Session["ID"])));
@@ -107,7 +110,6 @@ namespace WebApplication4.Controllers
                 return View(yourSubjectsYouCanBuy);
             }
             return View();
-            
         }
         [HttpPost]
         public ActionResult Marketplace(Data.Subject sub)
@@ -123,7 +125,7 @@ namespace WebApplication4.Controllers
 
             return View();
         }
-        public ActionResult Edit(int id = 0)
+        public ActionResult Buy(int id = 0)
         {
             Data.Subject sub;
             using (NorthwindEntities db = new NorthwindEntities())
@@ -143,9 +145,8 @@ namespace WebApplication4.Controllers
             return View(sub);
         }
         
-
         [HttpPost]
-        public ActionResult Edit(Data.Subject sub)
+        public ActionResult Buy(Data.Subject sub)
         {
             using (NorthwindEntities db = new NorthwindEntities())
             {
@@ -159,7 +160,7 @@ namespace WebApplication4.Controllers
             return View(sub);
         }
 
-        public ActionResult Memento(int id = 0)
+        public ActionResult Cancel(int id = 0)
         {
             Data.Subject sub;
             using (NorthwindEntities db = new NorthwindEntities())
@@ -170,9 +171,28 @@ namespace WebApplication4.Controllers
                     return HttpNotFound();
                 }
             }
-            
+            Receiver receiver = new Receiver();
+            Command.Command command = new ConcreteCommand(receiver);
+            Invoker invoker = new Invoker();
+            invoker.SetCommand(command);
+            invoker.RemoveExam(int.Parse((string)Session["ID"]), sub);
+            Session["ECTS"] = invoker.ExecuteCommand(int.Parse((string)Session["ID"]));
             return View(sub);
         }
-        
+
+        [HttpPost]
+        public ActionResult Cancel(Data.Subject sub)
+        {
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                if (sub == null)
+                {
+                    db.Entry(sub).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return View();
+                }
+            }
+            return View(sub);
+        }
     }
 }
