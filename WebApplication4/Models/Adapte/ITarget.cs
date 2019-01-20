@@ -10,6 +10,5 @@ namespace WebApplication4.Controllers.Adapterr
     {
         string SafeData(string monthAndYear, int user_id);
         string SafeData();
-        void AddExam(Exam s, int user_id);
     }
 }

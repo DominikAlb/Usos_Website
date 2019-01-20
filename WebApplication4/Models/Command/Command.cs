@@ -18,5 +18,8 @@ namespace WebApplication4.Controllers.Command
 
         public abstract void Execute(int id_user, Subject sub);
         public abstract int? Execute(int id_user);
+        public abstract void RemoveExam(int id_user, Subject sub);
+        public abstract void AddExam(Exam s, int user_id);
+        public abstract void AddUserToGroupExam(int exam_id, int user_id);
     }
 }
