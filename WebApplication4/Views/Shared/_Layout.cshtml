@@ -32,12 +32,25 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Kalendarz", "Calendar", "Home")</li>
-                    <li>@Html.ActionLink("Kursy", "Courses", "Home")</li>
-                    <li>@Html.ActionLink("Logowanie", "Login", "Home")</li>
-                    <li>@Html.ActionLink("Market", "Marketplace", "Home")</li>
-                    <li>@Html.ActionLink("Szukaj kursu", "SearchForCourse", "Home")</li>
-                    <li>@Html.ActionLink("Szukaj przedmiotu", "SearchForPerson", "Home")</li>
+                    <li>@Html.ActionLink("Kalendarz", "Index", "Calendar")</li>
+                    <li>@Html.ActionLink("Kursy", "Index", "Courses")</li>
+                    <li>@Html.ActionLink("Szukaj kursu", "Index", "SearchForCourse")</li>
+                    <li>@Html.ActionLink("Szukaj osoby", "Index", "SearchForPerson")</li>
+                    @if (Session["ID"] != null)
+                    {
+                        <li>@Html.ActionLink("Market", "Index", "Marketplace")</li>
+                        <li>@Html.ActionLink("Plan zajęć", "Index", "Schedule")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav" style="float:right">
+                    @if (Session["ID"] == null)
+                    {
+                        <li style="float:right">@Html.ActionLink("Zaloguj się", "Index", "Login")</li>
+                    }
+                    else
+                    {
+                        <li style="float:right">@Html.ActionLink("Wyloguj się", "LogOut", "Login")</li>
+                    }
                 </ul>
             </div>
             <div style="float:right">
@@ -49,12 +62,15 @@
             </div>
         </div>
     </nav>
-    <div class="message">
-        @if (Session["LogSub"] != null)
-        {
-            <Text>@Session["LogSub"]</Text>
-        }
-    </div>
+    @if (Session["ID"] != null)
+    {
+        <div class="message">
+            @if (Session["LogSub"] != null)
+            {
+                <Text>@Session["LogSub"]</Text>
+            }
+        </div>
+    }
     <div class="container body-content" >
         @RenderBody()
         <hr />

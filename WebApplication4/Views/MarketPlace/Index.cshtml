@@ -27,7 +27,7 @@
                 <td class='coursesTd'>@Model[i].ECTS</td>
                 <td class='coursesTd'>@Model[i].Department</td>
                 <td class='coursesTd'>@Html.ActionLink("Kup", "Edit", new { id = Model[i].ID })</td>
-                <td class='coursesTd'>@Html.ActionLink("Anuluj", "Marketplace", new { })</td>
+                <td class='coursesTd'>@Html.ActionLink("Anuluj", "Index", new { })</td>
             </tr>
             }
         </table>

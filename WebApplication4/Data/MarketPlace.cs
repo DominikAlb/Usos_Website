@@ -12,9 +12,13 @@ namespace WebApplication4.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class MarketPlace
     {
-        public int RegionID { get; set; }
-        public string RegionDescription { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> CourseID { get; set; }
+        public string Semester { get; set; }
+        public string Department { get; set; }
+    
+        public virtual Course Course { get; set; }
     }
 }

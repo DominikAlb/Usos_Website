@@ -12,27 +12,22 @@ namespace WebApplication4.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Person()
         {
-            this.SubjectGroup = new HashSet<SubjectGroup>();
-            this.UserToCourse = new HashSet<UserToCourse>();
+            this.Course = new HashSet<Course>();
         }
     
         public int ID { get; set; }
-        public string Login { get; set; }
-        public string Hash { get; set; }
-        public string Data { get; set; }
-        public Nullable<int> Flag { get; set; }
-        public Nullable<int> ECTS { get; set; }
-        public string Department { get; set; }
-        public string LoginErrorMessage { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<int> Room { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectGroup> SubjectGroup { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserToCourse> UserToCourse { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "Login";
 }
 <div class="Login" >
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
     {
         <fieldset>
 
@@ -30,6 +30,12 @@
                     <li></li>
                     <li>
                         <input type="submit" value="Login" />
+                    </li>
+                    <li>
+                        @if (Model != null)
+                        {
+                            <label style="color:red">@Model.LoginErrorMessage</label>
+                        }
                     </li>
                     <li></li>
                 </ul>
