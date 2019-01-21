@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers.Observer
         public static string Main(int userID)
         {
             ConcreteSubject sub = new ConcreteSubject(userID);
-            sub.Attach(new ConcreteObserver(sub));
+            sub.Attach(new UpdateECTS(sub));
             sub.SubjectState = DateTime.Now.ToLongDateString();
             return sub.Notify();
         }

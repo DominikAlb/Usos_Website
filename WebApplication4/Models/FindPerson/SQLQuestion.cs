@@ -8,7 +8,7 @@ using WebApplication4.App_Start;
 using WebApplication4.Controllers.Builder;
 namespace WebApplication4.Controllers.Proxy
 {
-    public class RealSubject : Subject
+    public class SQLQuestion : Subject
 
     {
         

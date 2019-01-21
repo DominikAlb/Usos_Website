@@ -157,8 +157,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleDataBase.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Singleton\Singleton.cs" />
-    <Compile Include="Models\Strategy\CheckDepartment.cs" />
+    <Compile Include="Models\FindPersonUsingSingleton\Singleton.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\CheckDepartment.cs" />
     <Compile Include="Data\Subject.cs">
       <DependentUpon>SimpleDataBase.tt</DependentUpon>
     </Compile>
@@ -171,18 +171,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Adapte\Adaptee.cs" />
-    <Compile Include="Models\Adapte\Adapterr.cs" />
-    <Compile Include="Models\Adapte\ITarget.cs" />
+    <Compile Include="Models\ForCalendar\RunCalendar.cs" />
+    <Compile Include="Models\ForCalendar\Adapterr.cs" />
+    <Compile Include="Models\ForCalendar\ITarget.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Builder\marketplace\Builder.cs" />
-    <Compile Include="Models\Builder\marketplace\ConcreteBuilder.cs" />
-    <Compile Include="Models\Builder\marketplace\Director.cs" />
-    <Compile Include="Models\Builder\marketplace\Product.cs" />
-    <Compile Include="Models\Command\Command.cs" />
-    <Compile Include="Models\Command\ConcreteCommand.cs" />
-    <Compile Include="Models\Command\Invoker.cs" />
-    <Compile Include="Models\Command\Receiver.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Builder.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\ConcreteBuilder.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Director.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Product.cs" />
+    <Compile Include="Models\SQLCommands\Command.cs" />
+    <Compile Include="Models\SQLCommands\ConcreteCommand.cs" />
+    <Compile Include="Models\SQLCommands\Invoker.cs" />
+    <Compile Include="Models\SQLCommands\Receiver.cs" />
     <Compile Include="Models\FabricPermissions\DAHP.cs" />
     <Compile Include="Models\FabricPermissions\DALP.cs" />
     <Compile Include="Models\FabricPermissions\DriverAdmin.cs" />
@@ -199,18 +199,18 @@
     <Compile Include="Models\FabricPermissions\FabricSupervisesPermissions.cs" />
     <Compile Include="Models\Factory.cs" />
     <Compile Include="Models\IClient.cs" />
-    <Compile Include="Models\Observer\ConcreteObserver.cs" />
-    <Compile Include="Models\Observer\ConcreteSubject.cs" />
-    <Compile Include="Models\Observer\Observer.cs" />
-    <Compile Include="Models\Observer\SendMessage.cs" />
-    <Compile Include="Models\Observer\SubjectObserver.cs" />
-    <Compile Include="Models\Proxy\Proxy.cs" />
-    <Compile Include="Models\Proxy\RealSubject.cs" />
-    <Compile Include="Models\Proxy\Subject.cs" />
-    <Compile Include="Models\Strategy\BuyForECTS.cs" />
-    <Compile Include="Models\Strategy\FAIS.cs" />
-    <Compile Include="Models\Strategy\Order.cs" />
-    <Compile Include="Models\Strategy\WMII.cs" />
+    <Compile Include="Models\ViewPointsECTS\UpdateECTS.cs" />
+    <Compile Include="Models\ViewPointsECTS\ConcreteSubject.cs" />
+    <Compile Include="Models\ViewPointsECTS\Observer.cs" />
+    <Compile Include="Models\ViewPointsECTS\SendMessage.cs" />
+    <Compile Include="Models\ViewPointsECTS\SubjectObserver.cs" />
+    <Compile Include="Models\FindPerson\Proxy.cs" />
+    <Compile Include="Models\FindPerson\SQLQuestion.cs" />
+    <Compile Include="Models\FindPerson\Subject.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\BuyForECTS.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\FAIS.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\Order.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\WMII.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\Teacher.cs" />

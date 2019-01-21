@@ -9,14 +9,14 @@ namespace WebApplication4.Controllers.Proxy
     public class Proxy : Subject
 
     {
-        private RealSubject _realSubject;
+        private SQLQuestion _realSubject;
 
         public override User Request(User user)
         {
 
             if (_realSubject == null)
             {
-                _realSubject = new RealSubject();
+                _realSubject = new SQLQuestion();
             }
 
             return _realSubject.Request(user);

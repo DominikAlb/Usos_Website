@@ -8,9 +8,9 @@ using System.Text;
 using System.Web;
 using WebApplication4.Data;
 
-namespace WebApplication4.Controllers.Adapterr
+namespace WebApplication4.Controllers.RunCalendar
 {
-    public class Adaptee
+    public class RunCalendar
     {
         public string SpecificRequest(string monthAndYear, int user_id)
         {
