@@ -1,7 +1,7 @@
 ﻿@model WebApplication4.Data.Subject
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Cancel";
 }
 
 <div>
@@ -49,13 +49,10 @@
                 @Html.ValidationMessageFor(model => model.Department)
             </div>
 
-            <p>
-                <input type="submit" value="Save" />
-            </p>
         </fieldset>
     }
 
     <div>
-        @Html.ActionLink("Potwierdź", "Marketplace")
+        @Html.ActionLink("Potwierdź", "Index")
     </div>
 </div>

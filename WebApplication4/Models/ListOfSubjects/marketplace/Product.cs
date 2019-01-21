@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers.Builder
     public class Product
     {
         List<Subject> _table;
-        public void MakeHTMLTable()
+        internal void MakeHTMLTable()
         {
             using(NorthwindEntities db = new NorthwindEntities())
             {
@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers.Builder
             }
             
         }
-        public List<Subject> GetTable()
+        internal List<Subject> GetTable()
         {
             return _table;
         }

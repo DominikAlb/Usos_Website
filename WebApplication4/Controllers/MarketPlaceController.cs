@@ -32,8 +32,7 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        // GET: Edit
-        public ActionResult Edit(int id = 0)
+        public ActionResult Buy(int id = 0)
         {
             Data.Subject sub;
             using (NorthwindEntities db = new NorthwindEntities())
@@ -54,7 +53,42 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Data.Subject sub)
+        public ActionResult Buy(Data.Subject sub)
+        {
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                if (sub == null)
+                {
+                    db.Entry(sub).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return View();
+                }
+            }
+            return View(sub);
+        }
+
+        public ActionResult Cancel(int id = 0)
+        {
+            Data.Subject sub;
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                sub = db.Subject.Find(id);
+                if (sub == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            Receiver receiver = new Receiver();
+            Command.Command command = new ConcreteCommand(receiver);
+            Invoker invoker = new Invoker();
+            invoker.SetCommand(command);
+            invoker.RemoveExam(int.Parse((string)Session["ID"]), sub);
+            Session["ECTS"] = invoker.ExecuteCommand(int.Parse((string)Session["ID"]));
+            return View(sub);
+        }
+
+        [HttpPost]
+        public ActionResult Cancel(Data.Subject sub)
         {
             using (NorthwindEntities db = new NorthwindEntities())
             {

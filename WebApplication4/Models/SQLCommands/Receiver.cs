@@ -4,71 +4,37 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Web;
 using WebApplication4.Data;
 
-namespace WebApplication4.Controllers.Adapterr
+namespace WebApplication4.Controllers.Command
 {
-    public class Adaptee
+    public class Receiver
     {
-        public string SpecificRequest(string monthAndYear, int user_id)
+        internal void Action(int id_user, Subject sub)
         {
-
-            StringBuilder str = new StringBuilder("<ul id='days' class='connectedSortable'>");
-            for (int i = 1; i <= 31; i++)
-            {
-                str.Append("<li id='number'>");
-                str.Append(i);
-                string temp = ":<ul id='" + "daysList" + i.ToString() + "'";
-                str.Append(temp);
-                str.Append("class='connectedSortable'>");
-                str.Append(ExamsInDay(user_id, i + "-" + monthAndYear));
-                str.Append("</ul></li>");
-            }
-            str.Append("</ul>");
-            return str.ToString();
-
-        }
-        public string SpecificRequest()
-        {
-            StringBuilder str = new StringBuilder("<ul id='days' class='connectedSortable'>");
-            for (int i = 1; i <= 31; i++)
-            {
-                str.Append("<li id='number'>");
-                str.Append(i);
-                str.Append(":<ul id='daysList");
-                str.Append(i);
-                str.Append("'class='connectedSortable'>");
-                str.Append("</ul></li>");
-            }
-            str.Append("</ul>");
-            return str.ToString();
-        }
-        public string ExamsInDay(int id_user, string date)
-        {
-            string ret = "";
             using (NorthwindEntities db = new NorthwindEntities())
             {
-                List<Exam> temp = db.Exam.Where(exam => exam.Date.Equals(date)).ToList();
-                List<int> list = db
-                    .SubjectGroup
-                    .Where(x => x.ID_USER == id_user)
-                    .Select(x => x.ID_EXAM)
-                    .ToList();
-                List<Exam> final = temp.Where(x => list.Any(y => y == x.ID)).ToList();
-                if (final != null)
+                User user = db.User.Where(x => x.ID == id_user).FirstOrDefault();
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
+                using (conn)
                 {
-                    final.ForEach(z => ret += "<li>" + z.ToString() + "</li>");
+                    conn.Open();
+                    string sql = "Update [User] Set ECTS = ECTS - @param1 WHERE ID = @param2";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.Add("@param1", SqlDbType.Int).Value = sub.ECTS;
+                    cmd.Parameters.Add("@param2", SqlDbType.Int).Value = id_user;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    
                 }
             }
-            return ret;
         }
-        public void AddExam(Exam s, int user_id)
+        internal void AddExam(Exam s, int user_id)
         {
             using (NorthwindEntities db = new NorthwindEntities())
             {
-                if(db.Exam.AsParallel().WithDegreeOfParallelism(4).Where(x => x.NameOfSub.Equals(s.NameOfSub) && x.Professor.Equals(s.Professor)).FirstOrDefault() == null)
+                if (db.Exam.AsParallel().WithDegreeOfParallelism(4).Where(x => x.NameOfSub.Equals(s.NameOfSub) && x.Professor.Equals(s.Professor)).FirstOrDefault() == null)
                 {
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
                     using (conn)
@@ -92,10 +58,10 @@ namespace WebApplication4.Controllers.Adapterr
                 {
                     throw new Exception("Jestes już zapisany na egzamin");
                 }
-                
+
             }
         }
-        public void AddUserToGroupExam(int exam_id, int user_id)
+        internal void AddUserToGroupExam(int exam_id, int user_id)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
             using (conn)
@@ -109,6 +75,33 @@ namespace WebApplication4.Controllers.Adapterr
                 cmd.ExecuteNonQuery();
             }
         }
+        internal int? FindUserECTS(int user_id)
+        {
+            User user;
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                user = db.User.Where(x => x.ID == user_id).FirstOrDefault();
+            }
+            return user.ECTS;
+        }
+        internal void RemoveExam(int id_user, Subject sub)
+        {
+            using (NorthwindEntities db = new NorthwindEntities())
+            {
+                User user = db.User.Where(x => x.ID == id_user).FirstOrDefault();
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    string sql = "Update [User] Set ECTS = ECTS + @param1 WHERE ID = @param2";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.Add("@param1", SqlDbType.Int).Value = sub.ECTS;
+                    cmd.Parameters.Add("@param2", SqlDbType.Int).Value = id_user;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
     }
-    
 }

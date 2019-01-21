@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Controllers.Adapterr;
+using WebApplication4.Controllers.Command;
 using WebApplication4.Data;
 
 namespace WebApplication4.Controllers
@@ -26,7 +27,7 @@ namespace WebApplication4.Controllers
             }
             return View();
         }
-        
+
 
         // GET: Calendar
         [HttpPost]
@@ -36,7 +37,11 @@ namespace WebApplication4.Controllers
             if (Session["Login"] != null)
             {
                 ITarget target = new Adapterr.Adapterr();
-                target.AddExam(objUser, int.Parse((string)Session["ID"]));
+                Receiver receiver = new Receiver();
+                Command.Command command = new ConcreteCommand(receiver);
+                Invoker invoker = new Invoker();
+                invoker.SetCommand(command);
+                invoker.AddExam(objUser, int.Parse((string)Session["ID"]));
                 try
                 {
                     Session["Exams"] = target.SafeData(DateTime.Now.Month + "-" + DateTime.Now.Year, int.Parse((string)Session["ID"]));
@@ -49,5 +54,6 @@ namespace WebApplication4.Controllers
             }
             return View(objUser);
         }
+
     }
 }

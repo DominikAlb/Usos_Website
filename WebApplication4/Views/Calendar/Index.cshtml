@@ -10,23 +10,23 @@
         <h1> Twoja lista przedmiotów: </h1>
 
 
-        @using (Html.BeginForm("Calendar", "Home", FormMethod.Post, new { }))
+        @using (Html.BeginForm("Index", "Calendar", FormMethod.Post, new { }))
         {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            @Html.LabelFor(m => m.NameOfSub)
-            @Html.TextBoxFor(m => m.NameOfSub)
-            @Html.ValidationMessageFor(m => m.NameOfSub)
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.LabelFor(m => m.NameOfSub)
+        @Html.TextBoxFor(m => m.NameOfSub)
+        @Html.ValidationMessageFor(m => m.NameOfSub)
 
-            @Html.LabelFor(m => m.Professor)
-            @Html.TextBoxFor(m => m.Professor)
-            @Html.ValidationMessageFor(m => m.Professor)
+        @Html.LabelFor(m => m.Professor)
+        @Html.TextBoxFor(m => m.Professor)
+        @Html.ValidationMessageFor(m => m.Professor)
 
-            @Html.LabelFor(m => m.Date)
-            @Html.TextBoxFor(m => m.Date)
-            @Html.ValidationMessageFor(m => m.Date)
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date)
+        @Html.ValidationMessageFor(m => m.Date)
 
-            <input type='Submit' value='Dodaj przedmiot' />
+        <input type='Submit' value='Dodaj przedmiot' />
 
         }
         <ul class="connectedSortable" id="example"></ul>

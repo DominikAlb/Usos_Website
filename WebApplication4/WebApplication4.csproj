@@ -139,7 +139,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MarketPlaceController.cs" />
-    <Compile Include="Controllers\MementoController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SearchForCourseController.cs" />
     <Compile Include="Controllers\SearchForPersonController.cs" />
@@ -170,8 +169,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleDataBase.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Singleton\Singleton.cs" />
-    <Compile Include="Data\Strategy\CheckDepartment.cs" />
     <Compile Include="Data\Subject.cs">
       <DependentUpon>SimpleDataBase.tt</DependentUpon>
     </Compile>
@@ -187,49 +184,52 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Data\Adapte\Adaptee.cs" />
-    <Compile Include="Data\Adapte\Adapterr.cs" />
-    <Compile Include="Data\Adapte\ITarget.cs" />
-    <Compile Include="Data\Admin.cs" />
-    <Compile Include="Data\Builder\marketplace\Builder.cs" />
-    <Compile Include="Data\Builder\marketplace\ConcreteBuilder.cs" />
-    <Compile Include="Data\Builder\marketplace\Director.cs" />
-    <Compile Include="Data\Builder\marketplace\Product.cs" />
-    <Compile Include="Data\Command\Command.cs" />
-    <Compile Include="Data\Command\ConcreteCommand.cs" />
-    <Compile Include="Data\Command\Invoker.cs" />
-    <Compile Include="Data\Command\Receiver.cs" />
-    <Compile Include="Data\FabricPermissions\DAHP.cs" />
-    <Compile Include="Data\FabricPermissions\DALP.cs" />
-    <Compile Include="Data\FabricPermissions\DriverAdmin.cs" />
-    <Compile Include="Data\FabricPermissions\DriverAdminHighPermission.cs" />
-    <Compile Include="Data\FabricPermissions\DriverAdminLowPermission.cs" />
-    <Compile Include="Data\FabricPermissions\DriverUser.cs" />
-    <Compile Include="Data\FabricPermissions\DriverUserHighPermission.cs" />
-    <Compile Include="Data\FabricPermissions\DriverUserLowPermission.cs" />
-    <Compile Include="Data\FabricPermissions\DUHP.cs" />
-    <Compile Include="Data\FabricPermissions\DULP.cs" />
-    <Compile Include="Data\FabricPermissions\FabricHighPermission.cs" />
-    <Compile Include="Data\FabricPermissions\FabricLowPermission.cs" />
-    <Compile Include="Data\FabricPermissions\FabricSupervises.cs" />
-    <Compile Include="Data\FabricPermissions\FabricSupervisesPermissions.cs" />
-    <Compile Include="Data\Factory.cs" />
-    <Compile Include="Data\IClient.cs" />
-    <Compile Include="Data\Observer\ConcreteObserver.cs" />
-    <Compile Include="Data\Observer\ConcreteSubject.cs" />
-    <Compile Include="Data\Observer\Observer.cs" />
-    <Compile Include="Data\Observer\SendMessage.cs" />
-    <Compile Include="Data\Observer\SubjectObserver.cs" />
-    <Compile Include="Data\Proxy\Proxy.cs" />
-    <Compile Include="Data\Proxy\RealSubject.cs" />
-    <Compile Include="Data\Proxy\Subject.cs" />
-    <Compile Include="Data\Strategy\BuyForECTS.cs" />
-    <Compile Include="Data\Strategy\FAIS.cs" />
-    <Compile Include="Data\Strategy\Order.cs" />
-    <Compile Include="Data\Strategy\WMII.cs" />
-    <Compile Include="Data\Student.cs" />
-    <Compile Include="Data\Subscription.cs" />
-    <Compile Include="Data\Teacher.cs" />
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\FabricPermissions\DAHP.cs" />
+    <Compile Include="Models\FabricPermissions\DALP.cs" />
+    <Compile Include="Models\FabricPermissions\DriverAdmin.cs" />
+    <Compile Include="Models\FabricPermissions\DriverAdminHighPermission.cs" />
+    <Compile Include="Models\FabricPermissions\DriverAdminLowPermission.cs" />
+    <Compile Include="Models\FabricPermissions\DriverUser.cs" />
+    <Compile Include="Models\FabricPermissions\DriverUserHighPermission.cs" />
+    <Compile Include="Models\FabricPermissions\DriverUserLowPermission.cs" />
+    <Compile Include="Models\FabricPermissions\DUHP.cs" />
+    <Compile Include="Models\FabricPermissions\DULP.cs" />
+    <Compile Include="Models\FabricPermissions\FabricHighPermission.cs" />
+    <Compile Include="Models\FabricPermissions\FabricLowPermission.cs" />
+    <Compile Include="Models\FabricPermissions\FabricSupervises.cs" />
+    <Compile Include="Models\FabricPermissions\FabricSupervisesPermissions.cs" />
+    <Compile Include="Models\Factory.cs" />
+    <Compile Include="Models\FindPersonUsingSingleton\Singleton.cs" />
+    <Compile Include="Models\FindPerson\Proxy.cs" />
+    <Compile Include="Models\FindPerson\SQLQuestion.cs" />
+    <Compile Include="Models\FindPerson\Subject.cs" />
+    <Compile Include="Models\ForCalendar\Adapterr.cs" />
+    <Compile Include="Models\ForCalendar\ITarget.cs" />
+    <Compile Include="Models\ForCalendar\RunCalendar.cs" />
+    <Compile Include="Models\IClient.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\BuyForECTS.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\CheckDepartment.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\FAIS.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\Order.cs" />
+    <Compile Include="Models\ListOfSubjectsGroupByDepartment\WMII.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Builder.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\ConcreteBuilder.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Director.cs" />
+    <Compile Include="Models\ListOfSubjects\marketplace\Product.cs" />
+    <Compile Include="Models\SQLCommands\Command.cs" />
+    <Compile Include="Models\SQLCommands\ConcreteCommand.cs" />
+    <Compile Include="Models\SQLCommands\Invoker.cs" />
+    <Compile Include="Models\SQLCommands\Receiver.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Subscription.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\ViewPointsECTS\ConcreteSubject.cs" />
+    <Compile Include="Models\ViewPointsECTS\Observer.cs" />
+    <Compile Include="Models\ViewPointsECTS\SendMessage.cs" />
+    <Compile Include="Models\ViewPointsECTS\SubjectObserver.cs" />
+    <Compile Include="Models\ViewPointsECTS\UpdateECTS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\SearchForCourseViewModel.cs" />
@@ -350,10 +350,6 @@
     <Content Include="Data\SimpleDataBase.edmx.diagram">
       <DependentUpon>SimpleDataBase.edmx</DependentUpon>
     </Content>
-    <Content Include="Data\courses.csv" />
-    <Content Include="Data\Marketplace.csv" />
-    <Content Include="Data\people.csv" />
-    <Content Include="Data\yourCourses.csv" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
     <Content Include="bin\roslyn\csi.exe.config" />
@@ -397,13 +393,13 @@
     <Content Include="Views\MarketPlace\Index.cshtml" />
     <Content Include="Views\SearchForCourse\Index.cshtml" />
     <Content Include="Views\SearchForPerson\Index.cshtml" />
-    <Content Include="Views\MarketPlace\Edit.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\MarketPlace\Buy.cshtml" />
+    <Content Include="Views\MarketPlace\Cancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Memento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
