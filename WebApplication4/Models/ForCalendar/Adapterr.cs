@@ -8,7 +8,7 @@ namespace WebApplication4.Controllers.Adapterr
 {
     public class Adapterr : ITarget
     {
-        private Adaptee _adaptee = new Adaptee();
+        private RunCalendar.RunCalendar _adaptee = new RunCalendar.RunCalendar();
 
         public string SafeData(string monthAndYear, int user_id)
         {

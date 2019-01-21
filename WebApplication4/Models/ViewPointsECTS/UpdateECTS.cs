@@ -5,14 +5,14 @@ using System.Web;
 
 namespace WebApplication4.Controllers.Observer
 {
-    public class ConcreteObserver : Observer
+    public class UpdateECTS : Observer
 
     {
         private string _observerState;
         private ConcreteSubject _subject;
         
 
-        public ConcreteObserver(
+        public UpdateECTS(
           ConcreteSubject subject)
         {
             this._subject = subject;
