@@ -1,4 +1,4 @@
-﻿@model WebApplication4.Data.Exam
+﻿@model WebApplication4.ViewModel.CalendarViewModel
 @{
     ViewBag.Title = "Calendar";
 }
@@ -14,17 +14,17 @@
         {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-        @Html.LabelFor(m => m.NameOfSub)
-        @Html.TextBoxFor(m => m.NameOfSub)
-        @Html.ValidationMessageFor(m => m.NameOfSub)
+        @Html.LabelFor(m => m.objUser.NameOfSub)
+        @Html.TextBoxFor(m => m.objUser.NameOfSub)
+        @Html.ValidationMessageFor(m => m.objUser.NameOfSub)
 
-        @Html.LabelFor(m => m.Professor)
-        @Html.TextBoxFor(m => m.Professor)
-        @Html.ValidationMessageFor(m => m.Professor)
+        @Html.LabelFor(m => m.objUser.Professor)
+        @Html.TextBoxFor(m => m.objUser.Professor)
+        @Html.ValidationMessageFor(m => m.objUser.Professor)
 
-        @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date)
-        @Html.ValidationMessageFor(m => m.Date)
+        @Html.LabelFor(m => m.objUser.Date)
+        @Html.TextBoxFor(m => m.objUser.Date)
+        @Html.ValidationMessageFor(m => m.objUser.Date)
 
         <input type='Submit' value='Dodaj przedmiot' />
 
@@ -34,7 +34,7 @@
             <ul>
                 <li class="prev">&#10094;</li>
                 <li class="next">&#10095;</li>
-                <li>Grudzień<br><span style="font-size:18px">2018</span></li>
+                <li>@Model.date.ToString("MMMM")<br><span style="font-size:18px">@Model.date.Year</span></li>
             </ul>
         </div>
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebApplication4.Controllers.Adapterr;
 using WebApplication4.Controllers.Command;
 using WebApplication4.Data;
+using WebApplication4.ViewModel;
 
 namespace WebApplication4.Controllers
 {
@@ -25,7 +26,8 @@ namespace WebApplication4.Controllers
                     Session["LogSub"] = e.Message;
                 }
             }
-            return View();
+            CalendarViewModel calendarViewModel = new CalendarViewModel { date = DateTime.Now, objUser = null };
+            return View(calendarViewModel);
         }
 
 
@@ -36,6 +38,7 @@ namespace WebApplication4.Controllers
         {
             if (Session["Login"] != null)
             {
+                CalendarViewModel calendarViewModel2 = new CalendarViewModel { date = DateTime.Now, objUser = objUser };
                 ITarget target = new Adapterr.Adapterr();
                 Receiver receiver = new Receiver();
                 Command.Command command = new ConcreteCommand(receiver);
@@ -50,9 +53,10 @@ namespace WebApplication4.Controllers
                 {
                     Session["LogSub"] = e.Message;
                 }
-                return View();
+                return View(calendarViewModel2);
             }
-            return View(objUser);
+            CalendarViewModel calendarViewModel = new CalendarViewModel { date = DateTime.Now, objUser = null };
+            return View(calendarViewModel);
         }
 
     }

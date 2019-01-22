@@ -27,5 +27,10 @@ namespace WebApplication4.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubjectGroup> SubjectGroup { get; set; }
+
+        public override string ToString()
+        {
+            return NameOfSub + "\n" + Professor + "\n" + Date;
+        }
     }
 }
