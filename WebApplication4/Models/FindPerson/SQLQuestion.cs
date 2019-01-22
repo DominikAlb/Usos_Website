@@ -15,7 +15,7 @@ namespace WebApplication4.Controllers.Proxy
         public override User Request(User objUser)
         {
             
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 var obj = db.User.Where(a => a.Login.Equals(objUser.Login) && a.Hash.Equals(objUser.Hash)).FirstOrDefault();
                 if (obj != null)

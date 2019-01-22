@@ -27,7 +27,7 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult Autherize(User user)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 User userDetails = null;
                 var users = db.User.Where(u => u.Login == user.Login && u.Hash == user.Hash);

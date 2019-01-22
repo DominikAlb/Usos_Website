@@ -16,7 +16,7 @@ namespace WebApplication4.Controllers
             List<Course> courses = new List<Course>();
             List<Person> people;
             int userID = int.Parse((String)Session["ID"]);
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 // select users courses
                 var temp = db.UserToCourse.Where(x => x.UserID == userID).ToList();

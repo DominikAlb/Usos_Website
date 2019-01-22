@@ -48,7 +48,7 @@ namespace WebApplication4.Controllers.RunCalendar
         public string ExamsInDay(int id_user, string date)
         {
             string ret = "";
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 List<Exam> temp = db.Exam.Where(exam => exam.Date.Equals(date)).ToList();
                 List<int> list = db

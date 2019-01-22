@@ -35,7 +35,7 @@ namespace WebApplication4.Controllers
         public ActionResult Buy(int id = 0)
         {
             Data.Subject sub;
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 sub = db.Subject.Find(id);
                 if (sub == null)
@@ -55,7 +55,7 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult Buy(Data.Subject sub)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 if (sub == null)
                 {
@@ -70,7 +70,7 @@ namespace WebApplication4.Controllers
         public ActionResult Cancel(int id = 0)
         {
             Data.Subject sub;
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 sub = db.Subject.Find(id);
                 if (sub == null)
@@ -90,7 +90,7 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult Cancel(Data.Subject sub)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 if (sub == null)
                 {

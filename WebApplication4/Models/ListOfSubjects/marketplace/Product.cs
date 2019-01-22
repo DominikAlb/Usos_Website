@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers.Builder
         List<Subject> _table;
         internal void MakeHTMLTable()
         {
-            using(NorthwindEntities db = new NorthwindEntities())
+            using(SimpleDataBase db = new SimpleDataBase())
             {
                 _table = db.Subject.AsParallel().WithDegreeOfParallelism(4).ToList();
             }

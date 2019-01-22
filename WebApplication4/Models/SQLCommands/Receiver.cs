@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers.Command
     {
         internal void Action(int id_user, Subject sub)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 User user = db.User.Where(x => x.ID == id_user).FirstOrDefault();
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
@@ -32,7 +32,7 @@ namespace WebApplication4.Controllers.Command
         }
         internal void AddExam(Exam s, int user_id)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 if (db.Exam.AsParallel().WithDegreeOfParallelism(4).Where(x => x.NameOfSub.Equals(s.NameOfSub) && x.Professor.Equals(s.Professor)).FirstOrDefault() == null)
                 {
@@ -78,7 +78,7 @@ namespace WebApplication4.Controllers.Command
         internal int? FindUserECTS(int user_id)
         {
             User user;
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 user = db.User.Where(x => x.ID == user_id).FirstOrDefault();
             }
@@ -86,7 +86,7 @@ namespace WebApplication4.Controllers.Command
         }
         internal void RemoveExam(int id_user, Subject sub)
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 User user = db.User.Where(x => x.ID == id_user).FirstOrDefault();
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindConnectionString"].ConnectionString);
