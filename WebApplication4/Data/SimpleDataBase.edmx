@@ -256,7 +256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NorthwindEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SimpleDataBase" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Exam" EntityType="Self.Exam" />
           <EntitySet Name="SubjectGroup" EntityType="Self.SubjectGroup" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -404,7 +404,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities">
+        <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="SimpleDataBase">
           <EntitySetMapping Name="Exam">
             <EntityTypeMapping TypeName="NorthwindModel.Exam">
               <MappingFragment StoreEntitySet="Exam">

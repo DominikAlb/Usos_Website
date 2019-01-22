@@ -20,7 +20,7 @@ namespace WebApplication4.Controllers.Observer
         public ConcreteSubject(int userID)
         {
             _subjects = new List<Exam>();
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 
                 db.SubjectGroup.ToList().ForEach(x =>

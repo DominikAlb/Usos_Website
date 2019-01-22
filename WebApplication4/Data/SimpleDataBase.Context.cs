@@ -13,10 +13,10 @@ namespace WebApplication4.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NorthwindEntities : DbContext
+    public partial class SimpleDataBase : DbContext
     {
-        public NorthwindEntities()
-            : base("name=NorthwindEntities")
+        public SimpleDataBase()
+            : base("name=SimpleDataBase")
         {
         }
     

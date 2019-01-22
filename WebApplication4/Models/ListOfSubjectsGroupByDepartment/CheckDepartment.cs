@@ -11,7 +11,7 @@ namespace WebApplication4.Data.Strategy
         public static BuyForECTS BuyForECTSFunction(int user_id) 
         {
             User user;
-            using(NorthwindEntities nd = new NorthwindEntities())
+            using(SimpleDataBase nd = new SimpleDataBase())
             {
                 user = nd.User.Where(x => x.ID == user_id).FirstOrDefault();
             }

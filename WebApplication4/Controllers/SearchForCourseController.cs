@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
         // GET: SearchForCourse
         public ActionResult Index()
         {
-            using (NorthwindEntities db = new NorthwindEntities())
+            using (SimpleDataBase db = new SimpleDataBase())
             {
                 var courseTable = db.Course;
                 var personTable = db.Person;
