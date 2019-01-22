@@ -12,26 +12,30 @@ namespace WebApplication4.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Course
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Course()
         {
-            this.SubjectGroup = new HashSet<SubjectGroup>();
+            this.MarketPlace = new HashSet<MarketPlace>();
             this.UserToCourse = new HashSet<UserToCourse>();
         }
     
         public int ID { get; set; }
-        public string Login { get; set; }
-        public string Hash { get; set; }
-        public string Data { get; set; }
-        public Nullable<int> Flag { get; set; }
-        public Nullable<int> ECTS { get; set; }
-        public string Department { get; set; }
-        public string LoginErrorMessage { get; set; }
-
+        public string Name { get; set; }
+        public Nullable<int> Professor { get; set; }
+        public string DayOfWeek { get; set; }
+        public Nullable<System.TimeSpan> Starts { get; set; }
+        public Nullable<System.TimeSpan> Ends { get; set; }
+        public Nullable<int> Room { get; set; }
+        public Nullable<int> NumberOfStudents { get; set; }
+        public Nullable<int> PlacesAvailable { get; set; }
+        public string Type { get; set; }
+        public string Examination { get; set; }
+    
+        public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectGroup> SubjectGroup { get; set; }
+        public virtual ICollection<MarketPlace> MarketPlace { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserToCourse> UserToCourse { get; set; }
     }

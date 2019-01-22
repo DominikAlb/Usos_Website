@@ -26,9 +26,12 @@ namespace WebApplication4.Data
         }
     
         public virtual DbSet<Exam> Exam { get; set; }
-        public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<SubjectGroup> SubjectGroup { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<MarketPlace> MarketPlace { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<UserToCourse> UserToCourse { get; set; }
     }
 }

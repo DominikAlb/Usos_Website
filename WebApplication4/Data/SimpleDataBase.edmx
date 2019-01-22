@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" />
+          <Property Name="Professor" Type="int" />
+          <Property Name="DayOfWeek" Type="nvarchar" MaxLength="64" />
+          <Property Name="Starts" Type="time" Precision="7" />
+          <Property Name="Ends" Type="time" Precision="7" />
+          <Property Name="Room" Type="int" />
+          <Property Name="NumberOfStudents" Type="int" />
+          <Property Name="PlacesAvailable" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="64" />
+          <Property Name="Examination" Type="nvarchar" MaxLength="64" />
+        </EntityType>
         <EntityType Name="Exam">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,12 +30,25 @@
           <Property Name="Professor" Type="nvarchar" MaxLength="64" />
           <Property Name="Date" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="Region">
+        <EntityType Name="MarketPlace">
           <Key>
-            <PropertyRef Name="RegionID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="RegionID" Type="int" Nullable="false" />
-          <Property Name="RegionDescription" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="64" />
+          <Property Name="Department" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="64" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="64" />
+          <Property Name="Room" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="64" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -51,7 +80,39 @@
           <Property Name="ECTS" Type="int" />
           <Property Name="Department" Type="nvarchar" MaxLength="32" />
         </EntityType>
-        <Association Name="FK__SubjectGr__ID_EX__44952D46">
+        <EntityType Name="UserToCourse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Courses__Profess__47DBAE45">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MarketPla__Cours__4AB81AF0">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="MarketPlace" Type="Self.MarketPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MarketPlace">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectGr__ID_EX__4E88ABD4">
           <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
           <End Role="SubjectGroup" Type="Self.SubjectGroup" Multiplicity="*" />
           <ReferentialConstraint>
@@ -63,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubjectGr__ID_US__43A1090D">
+        <Association Name="FK__SubjectGr__ID_US__4D94879B">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="SubjectGroup" Type="Self.SubjectGroup" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,19 +136,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserToCou__Cours__5812160E">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="UserToCourse" Type="Self.UserToCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserToCourse">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserToCou__UserI__571DF1D5">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserToCourse" Type="Self.UserToCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserToCourse">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NorthwindModelStoreContainer">
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketPlace" EntityType="Self.MarketPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectGroup" EntityType="Self.SubjectGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__SubjectGr__ID_EX__44952D46" Association="Self.FK__SubjectGr__ID_EX__44952D46">
+          <EntitySet Name="UserToCourse" EntityType="Self.UserToCourse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Courses__Profess__47DBAE45" Association="Self.FK__Courses__Profess__47DBAE45">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MarketPla__Cours__4AB81AF0" Association="Self.FK__MarketPla__Cours__4AB81AF0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="MarketPlace" EntitySet="MarketPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectGr__ID_EX__4E88ABD4" Association="Self.FK__SubjectGr__ID_EX__4E88ABD4">
             <End Role="Exam" EntitySet="Exam" />
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubjectGr__ID_US__43A1090D" Association="Self.FK__SubjectGr__ID_US__43A1090D">
+          <AssociationSet Name="FK__SubjectGr__ID_US__4D94879B" Association="Self.FK__SubjectGr__ID_US__4D94879B">
             <End Role="User" EntitySet="User" />
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserToCou__Cours__5812160E" Association="Self.FK__UserToCou__Cours__5812160E">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="UserToCourse" EntitySet="UserToCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserToCou__UserI__571DF1D5" Association="Self.FK__UserToCou__UserI__571DF1D5">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserToCourse" EntitySet="UserToCourse" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -103,13 +207,6 @@
           <Property Name="Professor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SubjectGroup" Relationship="Self.FK__SubjectGr__ID_EX__17C286CF" FromRole="Exam" ToRole="SubjectGroup" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="RegionID" />
-          </Key>
-          <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <Property Name="RegionDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="SubjectGroup">
           <Key>
@@ -133,6 +230,7 @@
           <NavigationProperty Name="SubjectGroup" Relationship="Self.FK__SubjectGr__ID_US__16CE6296" FromRole="User" ToRole="SubjectGroup" />
           <Property Name="ECTS" Type="Int32" />
           <Property Name="Department" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserToCourse" Relationship="NorthwindModel.FK__UserToCou__UserI__571DF1D5" FromRole="User" ToRole="UserToCourse" />
         </EntityType>
         <Association Name="FK__SubjectGr__ID_EX__17C286CF">
           <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
@@ -160,7 +258,6 @@
         </Association>
         <EntityContainer Name="NorthwindEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Exam" EntityType="Self.Exam" />
-          <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="SubjectGroup" EntityType="Self.SubjectGroup" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK__SubjectGr__ID_EX__17C286CF" Association="Self.FK__SubjectGr__ID_EX__17C286CF">
@@ -172,6 +269,26 @@
             <End Role="SubjectGroup" EntitySet="SubjectGroup" />
           </AssociationSet>
           <EntitySet Name="Subject" EntityType="NorthwindModel.Subject" />
+          <EntitySet Name="Course" EntityType="NorthwindModel.Course" />
+          <EntitySet Name="MarketPlace" EntityType="NorthwindModel.MarketPlace" />
+          <EntitySet Name="Person" EntityType="NorthwindModel.Person" />
+          <AssociationSet Name="FK__Courses__Profess__47DBAE45" Association="NorthwindModel.FK__Courses__Profess__47DBAE45">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MarketPla__Cours__4AB81AF0" Association="NorthwindModel.FK__MarketPla__Cours__4AB81AF0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="MarketPlace" EntitySet="MarketPlace" />
+          </AssociationSet>
+          <EntitySet Name="UserToCourse" EntityType="NorthwindModel.UserToCourse" />
+          <AssociationSet Name="FK__UserToCou__Cours__5812160E" Association="NorthwindModel.FK__UserToCou__Cours__5812160E">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="UserToCourse" EntitySet="UserToCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserToCou__UserI__571DF1D5" Association="NorthwindModel.FK__UserToCou__UserI__571DF1D5">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserToCourse" EntitySet="UserToCourse" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Subject">
           <Key>
@@ -183,6 +300,105 @@
           <Property Name="ECTS" Type="Int32" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Professor" Type="Int32" />
+          <Property Name="DayOfWeek" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Starts" Type="Time" Precision="7" />
+          <Property Name="Ends" Type="Time" Precision="7" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="NumberOfStudents" Type="Int32" />
+          <Property Name="PlacesAvailable" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Examination" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="NorthwindModel.FK__Courses__Profess__47DBAE45" FromRole="Course" ToRole="Person" />
+          <NavigationProperty Name="MarketPlace" Relationship="NorthwindModel.FK__MarketPla__Cours__4AB81AF0" FromRole="Course" ToRole="MarketPlace" />
+          <NavigationProperty Name="UserToCourse" Relationship="NorthwindModel.FK__UserToCou__Cours__5812160E" FromRole="Course" ToRole="UserToCourse" />
+        </EntityType>
+        <EntityType Name="MarketPlace">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="Semester" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="NorthwindModel.FK__MarketPla__Cours__4AB81AF0" FromRole="MarketPlace" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="NorthwindModel.FK__Courses__Profess__47DBAE45" FromRole="Person" ToRole="Course" />
+        </EntityType>
+        <Association Name="FK__Courses__Profess__47DBAE45">
+          <End Type="NorthwindModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="NorthwindModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MarketPla__Cours__4AB81AF0">
+          <End Type="NorthwindModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="NorthwindModel.MarketPlace" Role="MarketPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MarketPlace">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserToCourse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <NavigationProperty Name="Course" Relationship="NorthwindModel.FK__UserToCou__Cours__5812160E" FromRole="UserToCourse" ToRole="Course" />
+          <NavigationProperty Name="User" Relationship="NorthwindModel.FK__UserToCou__UserI__571DF1D5" FromRole="UserToCourse" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__UserToCou__Cours__5812160E">
+          <End Type="NorthwindModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="NorthwindModel.UserToCourse" Role="UserToCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserToCourse">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserToCou__UserI__571DF1D5">
+          <End Type="NorthwindModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="NorthwindModel.UserToCourse" Role="UserToCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserToCourse">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -196,14 +412,6 @@
                 <ScalarProperty Name="NameOfSub" ColumnName="NameOfSub" />
                 <ScalarProperty Name="Professor" ColumnName="Professor" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Region">
-            <EntityTypeMapping TypeName="NorthwindModel.Region">
-              <MappingFragment StoreEntitySet="Region">
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="RegionDescription" ColumnName="RegionDescription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -236,6 +444,54 @@
                 <ScalarProperty Name="ECTS" ColumnName="ECTS" />
                 <ScalarProperty Name="Professor" ColumnName="Professor" />
                 <ScalarProperty Name="NameOfSub" ColumnName="NameOfSub" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="NorthwindModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Examination" ColumnName="Examination" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PlacesAvailable" ColumnName="PlacesAvailable" />
+                <ScalarProperty Name="NumberOfStudents" ColumnName="NumberOfStudents" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="Ends" ColumnName="Ends" />
+                <ScalarProperty Name="Starts" ColumnName="Starts" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="Professor" ColumnName="Professor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketPlace">
+            <EntityTypeMapping TypeName="NorthwindModel.MarketPlace">
+              <MappingFragment StoreEntitySet="MarketPlace">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="NorthwindModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserToCourse">
+            <EntityTypeMapping TypeName="NorthwindModel.UserToCourse">
+              <MappingFragment StoreEntitySet="UserToCourse">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

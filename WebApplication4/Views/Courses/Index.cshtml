@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Courses";
+}
+
+<div class="myPoliteDiv">
+    <input type="text" id="courseInput" onkeyup="searchForCourses('courseInput', 'coursesTable')" placeholder="Search for courses...">
+    <input type="text" id="nameInput" onkeyup="searchForNames(" nameInput","coursesTable")" placeholder="Search for names...">
+    <div style="clear:both"></div>
+
+    <div id="courses_table">
+
+    </div>
+
+    <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "../Data/yourCourses.csv",
+                    dataType: "text",
+                }).done(successFunction);
+            });
+
+    </script>
+</div>
+
