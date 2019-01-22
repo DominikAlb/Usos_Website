@@ -1,0 +1,44 @@
+﻿@model WebApplication4.ViewModel.ScheduleViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@foreach (var dayOfWeek in Model.DaysOfWeek)
+{
+    var courses = Model.Courses.Where(x => x.DayOfWeek == dayOfWeek).OrderBy(x => x.Starts).ToList();
+    if (courses.Count != 0)
+    {
+        <h2>@dayOfWeek</h2>
+
+        <table class="coursesSearchTable>" id="coursesSearchTable">
+            <tr class="coursesTr">
+                <th class="coursesTh">Course</th>
+                <th class="coursesTh">Instructor</th>
+                <th class="coursesTh">Day</th>
+                <th class="coursesTh">Starts</th>
+                <th class="coursesTh">Ends</th>
+                <th class="coursesTh">Room</th>
+            </tr>
+            @foreach (var course in courses)
+            {
+                <tr class="coursesTr">
+                    <td class="coursesTd"> @course.Name </td>
+                    @{
+                        var professor = Model.People.Where(p => p.ID == course.Professor).First();
+                    }
+                    <td class="coursesTd"> @professor.FirstName @professor.LastName </td>
+                    <td class="coursesTd"> @course.DayOfWeek </td>
+                    <td class="coursesTd"> @course.Starts </td>
+                    <td class="coursesTd"> @course.Ends </td>
+                    <td class="coursesTd"> @course.Room </td>
+                </tr>
+            }
+        </table>
+
+    }
+}
+
+

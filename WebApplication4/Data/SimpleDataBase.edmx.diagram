@@ -4,14 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="acfddfa7f97e42e5bdccfac2168220f7" Name="Diagram1">
+      <Diagram DiagramId="acfddfa7f97e42e5bdccfac2168220f7" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="NorthwindModel.Exam" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.Region" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.SubjectGroup" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.User" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="NorthwindModel.FK__SubjectGr__ID_EX__17C286CF" ManuallyRouted="false" />
         <AssociationConnector Association="NorthwindModel.FK__SubjectGr__ID_US__16CE6296" ManuallyRouted="false" />
         <EntityTypeShape EntityType="NorthwindModel.Subject" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="NorthwindModel.Course" Width="1.5" PointX="7.625" PointY="4" />
+        <EntityTypeShape EntityType="NorthwindModel.MarketPlace" Width="1.5" PointX="9.875" PointY="4.75" />
+        <EntityTypeShape EntityType="NorthwindModel.Person" Width="1.5" PointX="5.375" PointY="4.625" />
+        <AssociationConnector Association="NorthwindModel.FK__Courses__Profess__47DBAE45" />
+        <AssociationConnector Association="NorthwindModel.FK__MarketPla__Cours__4AB81AF0" />
+        <EntityTypeShape EntityType="NorthwindModel.UserToCourse" Width="1.5" PointX="9.875" PointY="1.75" />
+        <AssociationConnector Association="NorthwindModel.FK__UserToCou__Cours__5812160E" />
+        <AssociationConnector Association="NorthwindModel.FK__UserToCou__UserI__571DF1D5" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

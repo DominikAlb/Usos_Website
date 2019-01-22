@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers.RunCalendar
 {
     public class RunCalendar
     {
-        public string SpecificRequest(string monthAndYear, int user_id)
+        internal string SpecificRequest(string monthAndYear, int user_id)
         {
 
             StringBuilder str = new StringBuilder("<ul id='days' class='connectedSortable'>");
@@ -30,7 +30,7 @@ namespace WebApplication4.Controllers.RunCalendar
             return str.ToString();
 
         }
-        public string SpecificRequest()
+        internal string SpecificRequest()
         {
             StringBuilder str = new StringBuilder("<ul id='days' class='connectedSortable'>");
             for (int i = 1; i <= 31; i++)
@@ -45,7 +45,7 @@ namespace WebApplication4.Controllers.RunCalendar
             str.Append("</ul>");
             return str.ToString();
         }
-        public string ExamsInDay(int id_user, string date)
+        internal string ExamsInDay(int id_user, string date)
         {
             string ret = "";
             using (NorthwindEntities db = new NorthwindEntities())

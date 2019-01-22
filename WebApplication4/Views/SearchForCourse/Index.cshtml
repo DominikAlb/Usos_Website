@@ -1,0 +1,39 @@
+﻿@model WebApplication4.ViewModel.SearchForCourseViewModel
+
+@{
+    ViewBag.Title = "SearchForCourses";
+}
+
+<div class="searchForCourse">
+    <table class="coursesSearchTable>" id="coursesSearchTable">
+        <tr class="coursesTr">
+            <th class="coursesTh">Course</th>
+            <th class="coursesTh">Instructor</th>
+            <th class="coursesTh">Day</th>
+            <th class="coursesTh">Starts</th>
+            <th class="coursesTh">Ends</th>
+            <th class="coursesTh">Room</th>
+            <th class="coursesTh">Number of students</th>
+            <th class="coursesTh">Places available</th>
+            <th class="coursesTh">Examination</th>
+        </tr>
+        @foreach (var course in Model.courses)
+        {
+        <tr class="coursesTr">
+            <td class="coursesTd"> @course.Name </td>
+            @{
+                var professor = Model.people.Where(p => p.ID == course.Professor).First();
+            }
+            <td class="coursesTd"> @professor.FirstName @professor.LastName </td>
+            <td class="coursesTd"> @course.DayOfWeek </td>
+            <td class="coursesTd"> @course.Starts </td>
+            <td class="coursesTd"> @course.Ends </td>
+            <td class="coursesTd"> @course.Room </td>
+            <td class="coursesTd"> @course.NumberOfStudents </td>
+            <td class="coursesTd"> @course.PlacesAvailable </td>
+            <td class="coursesTd"> @course.Type </td>
+            <td class="coursesTd"> @course.Examination </td>
+        </tr>
+        }
+    </table>
+</div>

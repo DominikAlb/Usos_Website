@@ -1,0 +1,47 @@
+﻿@model WebApplication4.Data.User
+@{
+    ViewBag.Title = "Login";
+}
+<div class="Login" >
+    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+    {
+        <fieldset>
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div>
+                <ul>
+                    <li>@Html.LabelFor(a => a.Login)</li>
+                    <li>@Html.TextBoxFor(a => a.Login)</li>
+                    <li>@Html.ValidationMessageFor(a => a.Login)</li>
+                </ul>
+                <ul>
+                    <li>
+                        @Html.LabelFor(a => a.Hash)
+                    </li>
+                    <li>
+                        @Html.PasswordFor(a => a.Hash)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(a => a.Hash)
+                    </li>
+                </ul>
+                <ul>
+                    <li></li>
+                    <li>
+                        <input type="submit" value="Login" />
+                    </li>
+                    <li>
+                        @if (Model != null)
+                        {
+                            <label style="color:red">@Model.LoginErrorMessage</label>
+                        }
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+
+        </fieldset>
+    }
+</div>
+
