@@ -49,7 +49,7 @@ namespace WebApplication4.Controllers
                     if (obj != null)
                     {
                         IClient permission = new Factory().Run(obj.Flag);
-                        ViewBag.Message = permission.GetName();
+                        Session["LoginAs"] = permission.GetName();
                         ITarget target = new Adapterr.Adapterr();
 
                         Session["ID"] = obj.ID.ToString();

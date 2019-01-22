@@ -53,10 +53,10 @@
                     }
                 </ul>
             </div>
-            <div style="float:right">
-                @if (ViewBag.Message != null)
+            <div style="float:right;">
+                @if (Session["LoginAs"] != null)
                 {
-                    <text>Permission: @ViewBag.Message</text>
+                    <text>Permission: @Session["LoginAs"]</text>
                 }
 
             </div>
